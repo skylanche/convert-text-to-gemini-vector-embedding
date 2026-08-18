@@ -1,27 +1,17 @@
-# .
+# Text to Gemini Embeddings with PostgreSQL & pgvector
+A Vue.js + TypeScript application that converts text into vector embeddings using Google's Gemini embedding model and stores those embeddings in PostgreSQL using the pgvector extension.
 
-This template should help get you started developing with Vue 3 in Vite.
+The application can be used as the foundation for semantic search, document similarity, Retrieval-Augmented Generation (RAG), recommendation systems, and AI-powered knowledge bases.
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Features
+Vue.js frontend
+TypeScript support
+Gemini text embedding generation
+PostgreSQL database
+pgvector for vector storage and similarity search
+Semantic similarity search
+REST API integration
+Environment-based configuration
 
 ## Project Setup
 
