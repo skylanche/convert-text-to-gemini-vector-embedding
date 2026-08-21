@@ -7,6 +7,9 @@ const header1Txt = ref("Gemini Vector Embedding Generator")
 const buttonTxt = ref("Get Embedding")
 const textAreaInput = ref("")
 const statusMessage = ref("")
+const baseUrl = ref("http://localhost:8000")
+
+const embeddingOutput = ref("")
 
 // Function to generate embedding
 async function generateEmbedding(){
@@ -20,8 +23,6 @@ if(!rawTextInput){
 }
 
 const sanitizedInput = DOMPurify.sanitize(rawTextInput)
-
-try{
 const requestEmbedding = {
   method: 'POST',
   headers: {
@@ -30,9 +31,13 @@ const requestEmbedding = {
   body: JSON.stringify({ text: sanitizedInput })
 }
 
-const response = await fetch('', requestEmbedding)
+try{
+const response = await fetch(`${baseUrl.value}/api/embed`, requestEmbedding)
 
-const embeddingData = await response.json()
+const data = await response.json()
+
+embeddingOutput.value = JSON.stringify(data.embedding)
+
 
 }catch(err){
   console.error("Error generating embedding:", err)
@@ -51,7 +56,7 @@ const embeddingData = await response.json()
 
   <div id="status" v-if="statusMessage">{{statusMessage}}</div>
 
-  <pre id="output"></pre>
+  <pre id="output">{{ embeddingOutput }}</pre>
 </template>
 
 <style scoped>
