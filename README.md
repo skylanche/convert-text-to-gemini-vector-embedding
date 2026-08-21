@@ -19,10 +19,17 @@ Environment-based configuration
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compile and Run Front End
 
 ```sh
 npm run dev
+```
+
+### Compile and Run Backend
+
+```sh
+cd backend
+npm start
 ```
 
 ### Type-Check, Compile and Minify for Production
