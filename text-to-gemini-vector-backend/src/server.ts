@@ -5,7 +5,12 @@ import { embeddingRouter } from './routes/embedding.js'
 
 const PORT = Number(process.env.PORT) || 8000
 const app: Express = express()
-app.use(cors({ origin: "http://localhost:5173",}))
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://convert-text-to-gemini-vector-embedding-1.onrender.com"
+  ]
+}))
 app.use(express.json());
 
 app.use('/api', embeddingRouter)
