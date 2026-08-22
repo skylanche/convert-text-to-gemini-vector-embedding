@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Convert text to Gemini embedding",
   "license": "ISC",
-  "author": "sakthi",
+  "author": "skylanche",
   "type": "module",
   "main": "dist/server.js",
   "scripts": {
