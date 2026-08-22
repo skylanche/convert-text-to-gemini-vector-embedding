@@ -3,7 +3,7 @@ import cors from "cors"
 import { embeddingRouter } from './routes/embedding.js'
 
 
-const PORT = process.env.PORT || 8000
+const PORT = Number(process.env.PORT) || 8000
 const app: Express = express()
 app.use(cors({ origin: "http://localhost:5173",}))
 app.use(express.json());
@@ -15,4 +15,4 @@ app.use((req, res) => {
 })
 
 
-app.listen(PORT, (): void => { console.log(`Server is running on port ${PORT}`) })
+app.listen(PORT, "0.0.0.0", () => {console.log(`Server running on port ${PORT}`);})
