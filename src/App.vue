@@ -7,7 +7,7 @@ const header1Txt = ref("Gemini Vector Embedding Generator")
 const buttonTxt = ref("Get Embedding")
 const textAreaInput = ref("")
 const statusMessage = ref("")
-const baseUrl = ref("http://localhost:8000")
+const baseUrl = ref(import.meta.env.VITE_API_URL || "http://localhost:8000")
 
 const embeddingOutput = ref("")
 
