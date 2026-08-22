@@ -4,7 +4,12 @@ import { embeddingRouter } from './routes/embedding.js'
 import { rateLimit } from "express-rate-limit";
 
 const PORT = Number(process.env.PORT) || 8000
+
+
 const app: Express = express()
+
+app.set("trust proxy", 1)
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
