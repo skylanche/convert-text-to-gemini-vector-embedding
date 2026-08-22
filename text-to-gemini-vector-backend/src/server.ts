@@ -1,7 +1,7 @@
 import express, { type Express, Request, Response } from 'express'
 import cors from "cors"
 import { embeddingRouter } from './routes/embedding.js'
-
+import { rateLimit } from "express-rate-limit";
 
 const PORT = Number(process.env.PORT) || 8000
 const app: Express = express()
@@ -13,7 +13,15 @@ app.use(cors({
 }))
 app.use(express.json());
 
-app.use('/api', embeddingRouter)
+app.use('/api', rateLimit({
+  windowMs: 60 * 1000,
+  limit: 3,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    error: "Too many requests. Please try again later."
+  }
+}), embeddingRouter)
 
 app.use((req, res) => {
   res.status(404).json({ message: "Endpoint not found. Please check the API documentation." })
