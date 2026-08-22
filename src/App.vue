@@ -34,6 +34,18 @@ const requestEmbedding = {
 try{
 const response = await fetch(`${baseUrl.value}/api/embed`, requestEmbedding)
 
+if (response.status === 429) {
+  const error = await response.json();
+
+  statusMessage.value = error.error || "Too many requests. Please try again later.";
+
+  return;
+}
+
+if (!response.ok) {
+  throw new Error("Request failed");
+}
+
 const data = await response.json()
 
 embeddingOutput.value = JSON.stringify(data.embedding)
