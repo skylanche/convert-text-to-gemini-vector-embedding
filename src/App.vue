@@ -7,6 +7,7 @@ const header1Txt = ref("Gemini Vector Embedding Generator")
 const buttonTxt = ref("Get Embedding")
 const textAreaInput = ref("")
 const statusMessage = ref("")
+let isLoading = ref(false)
 const baseUrl = ref(import.meta.env.VITE_API_URL || "http://localhost:8000")
 
 const embeddingOutput = ref("")
@@ -14,11 +15,14 @@ const embeddingOutput = ref("")
 // Function to generate embedding
 async function generateEmbedding(){
 
+isLoading.value = true
   
 const rawTextInput = textAreaInput.value.trim().replace(/\s+/g, ' ')
 
 if(!rawTextInput){
-  alert("Please enter some text to generate an embedding.")
+  isLoading.value = false
+  statusMessage.value = "Please enter some text to generate an embedding."
+  clearStatus()
   return
 }
 
@@ -39,11 +43,19 @@ if (response.status === 429) {
 
   statusMessage.value = error.error || "Too many requests. Please try again later.";
 
+  clearStatus()
+
   return;
 }
 
 if (!response.ok) {
-  throw new Error("Request failed");
+  statusMessage.value = "Request failed";
+  isLoading.value = false
+
+  clearStatus()
+
+}else{
+isLoading.value = false
 }
 
 const data = await response.json()
@@ -56,6 +68,13 @@ embeddingOutput.value = JSON.stringify(data.embedding)
 }
 }
 
+function clearStatus(){
+
+setTimeout(() => {
+  statusMessage.value = ""
+  }, 2000)
+
+  }
 
 </script>
 
@@ -64,7 +83,9 @@ embeddingOutput.value = JSON.stringify(data.embedding)
 <h1>{{header1Txt}}</h1>
 
   <textarea id="textInput" v-model="textAreaInput" rows="3" placeholder="Enter text..."></textarea>
-  <button @click="generateEmbedding">{{buttonTxt}}</button>
+  <button @click="generateEmbedding" :disabled="isLoading">
+    {{ isLoading ? 'Loading...' : 'Generate Embedding' }}
+  </button>
 
   <div id="status" v-if="statusMessage">{{statusMessage}}</div>
 

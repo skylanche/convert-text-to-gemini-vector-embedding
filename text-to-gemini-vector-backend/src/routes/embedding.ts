@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import createEmbedding from "../services/gemini.js";
-
+import storeEmbeddingInDB from "../services/db.js";
 
 export const embeddingRouter = express.Router();
 
@@ -16,6 +16,10 @@ embeddingRouter.post("/embed", async (req: Request, res: Response) => {
         }
 
         const embedding = await createEmbedding(text);
+
+        if(embedding){
+            await storeEmbeddingInDB(text, embedding);
+        }
 
         res.json({
             text,
