@@ -48,6 +48,12 @@ body {
     }
     button:hover { background: #1d4ed8; }
 
+    button:disabled {
+  background:grey;
+  cursor: not-allowed;
+  opacity:0.5;
+}
+
     pre {
     background: inherit;
     border: 1px solid #ccc;
