@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use('/api', rateLimit({
   windowMs: 60 * 1000,
-  limit: 10,
+  limit: 5,
   standardHeaders: "draft-8",
   legacyHeaders: false,
   message: {
