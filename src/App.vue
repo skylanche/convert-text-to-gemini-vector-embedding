@@ -72,7 +72,7 @@ function clearStatus(){
 
 setTimeout(() => {
   statusMessage.value = ""
-  }, 2000)
+  }, 3000)
 
   }
 
